@@ -22,7 +22,7 @@ export const Cart = () => {
             {
             return (
                 <div className="cart-items-title cart-item-item">
-                  <img src={item.image} alt="" />
+                  <img src={`http://localhost:4000/uploads/${item.image}`} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>

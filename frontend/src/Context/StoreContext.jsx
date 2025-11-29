@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 export const StoreContext = createContext(null);
 
@@ -19,7 +19,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       const response=await axios.post(
         url + "/api/cart/add",
-        { itemId },
+        {itemId },
         { headers: { token } }
       );
       if(response.data.success){
