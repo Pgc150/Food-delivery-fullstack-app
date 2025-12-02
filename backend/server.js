@@ -16,6 +16,7 @@ import foodRouter from "./routes/foodRoute.js"
 import userRouter from "./routes/userRoute.js"
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import chatRoute from "./routes/chatRoute.js";
 
 
 // connection string = mongodb+srv://payalchavhan:<db_password>@cluster0.ikmor.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
@@ -39,6 +40,7 @@ app.use("/uploads",express.static('uploads'));
 app.use("/api/user",userRouter);
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
+app.use("/api",chatRoute)
 
 
 app.get("/",(req,res)=>{

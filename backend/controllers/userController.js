@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
 
-
-
 // Create a JWT token
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "3d" });

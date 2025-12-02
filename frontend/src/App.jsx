@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import './App.css'
 import Navbar from './Components/Navbar/Navbar'
@@ -11,24 +11,54 @@ import LoginSignup from './Components/LoginSignup/LoginSignup'
 import { Toaster } from "react-hot-toast";
 import Verify from './Pages/Verify/Verify'
 import MyOrders from './Pages/MyOrders/MyOrders'
+import Chatbot from './Components/Chatbot/Chatbot'
+
 function App() {
   const [showLogin,setShowLogin] = useState(false)
+
+  const pages = useMemo(()=>
+      [
+    {path:'/',
+      element:<Home/>
+    },
+    {
+      path:'/cart',
+      element:<Cart/>
+    },
+    {
+      path:'/verify',
+      element:<Verify/>
+
+    },{
+      path:'/myorders',
+      element:<MyOrders/>
+    }
+    ,{
+      path:'/chat',
+      element:<Chatbot/>
+    }
+    
+
+  ]
+
+  ,[])
   
   return (
     <>
       <Toaster
-        position="top-center"     // 👉 This sets the toast position
-        reverseOrder={false}
+        position="bottom-right" 
+        reverseOrder={true}
       />
-      {showLogin?<LoginSignup setShowLogin={setShowLogin}/>:<></>}
+      {showLogin&&<LoginSignup setShowLogin={setShowLogin}/>}
       <div className="app">
         <Navbar setShowLogin={setShowLogin}/>
         <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/cart' element={<Cart/>}/>
-            <Route path='/order' element={<PlaceOrder/>}/>
-            <Route path='/verify' element={<Verify/>}/>
-            <Route path='/myorders' element={<MyOrders/>}/>
+          {pages.map((value)=>{
+               return(
+                <Route path={value.path} element={value.element}/>
+               )
+          })}
+          
         </Routes>
       </div>
       <Footer/>

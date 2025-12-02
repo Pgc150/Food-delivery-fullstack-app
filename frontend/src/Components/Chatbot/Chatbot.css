@@ -1,0 +1,119 @@
+/* Floating Chat Button */
+.chat-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 14px;
+  border-radius: 50%;
+  background: tomato;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.4);
+  transition: 0.3s;
+}
+
+.chat-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Chat Window */
+.chat-window {
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  width: 420px;
+  height: 520px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Messages Section */
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Message bubbles */
+.message {
+  margin-bottom: 10px;
+}
+
+.user-msg {
+  text-align: right;
+}
+
+.bot-msg {
+  text-align: left;
+}
+
+.msg-text {
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-msg .msg-text {
+  background: #ffddcf; /* Light tomato shade */
+  color: #333;
+}
+
+.bot-msg .msg-text {
+  background: #f2f2f2;
+  color: #333;
+}
+
+/* Input Area */
+.chat-input-area {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: tomato;
+}
+
+.send-btn {
+  background: tomato;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.send-btn:hover {
+  background: #e04d36;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

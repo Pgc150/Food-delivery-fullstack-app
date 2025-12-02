@@ -1,4 +1,4 @@
-import React, { useContext ,useState} from 'react';
+import React, { useContext ,useEffect,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './PlaceOrder.css';
 import { StoreContext } from '../../Context/StoreContext';
@@ -6,14 +6,18 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
 const PlaceOrder = () => {
+
+  let fiels = {firstName,lastName,email,street,city,state,zipcode,country,phone}
+
+  
   const navigate = useNavigate();
 
   // Placeholder for getTotalCartAmount function
-  const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext) // Replace with actual logic
+  const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext)
   let userId = null;
   if (token) {
     const decoded = jwtDecode(token);
-    userId = decoded.id || decoded._id; // depending on your token structure
+    userId = decoded.id || decoded._id; 
   }
 
   const [data, setData]  = useState({
@@ -44,7 +48,7 @@ const PlaceOrder = () => {
     let orderItems = [];
     food_list.map((item) => {
       if (cartItems[item._id] > 0) {
-        let itemInfo = { ...item };   // ← also fix here (explained below)
+        let itemInfo = { ...item }; 
         itemInfo.quantity = cartItems[item._id];
         orderItems.push(itemInfo);
       }
@@ -68,6 +72,15 @@ const PlaceOrder = () => {
     }
      console.log(orderItems)
   }
+
+  useEffect(()=>{
+      if(!token) {
+        navigate("/cart")
+      }
+      else if(getTotalCartAmount() === 0){
+        navigate("/cart")
+      }
+  },[token])
   return (
     <form  onSubmit={placeOrder} className='place-order'>
       <div className='place-order-left'>

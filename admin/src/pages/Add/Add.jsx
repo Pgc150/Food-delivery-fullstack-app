@@ -8,9 +8,10 @@ import { StoreContext } from "../../contexts/StoreContext";
 import { useEffect } from "react";
 import {useNavigate } from "react-router-dom";
 const Add = () => {
+   const navigate = useNavigate();
     
     const url = "http://localhost:4000"
-    const {token,admin,navigate} = useContext(StoreContext);
+    const {token,admin} = useContext(StoreContext);
     const [image, setImage] = useState(false);
     const [data, setData] = useState({
       name: "",

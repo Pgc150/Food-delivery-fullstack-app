@@ -3,7 +3,7 @@ import "./Login.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { StoreContext } from "../../context/StoreContext";
+import { StoreContext } from "../../contexts/StoreContext";
 import {useNavigate } from "react-router-dom";
 
 const Login = ({ url }) => {
