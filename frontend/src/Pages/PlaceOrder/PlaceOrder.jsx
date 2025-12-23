@@ -7,7 +7,7 @@ import { jwtDecode } from "jwt-decode";
 
 const PlaceOrder = () => {
 
-  let fiels = {firstName,lastName,email,street,city,state,zipcode,country,phone}
+ 
 
   
   const navigate = useNavigate();

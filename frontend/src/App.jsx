@@ -25,11 +25,16 @@ function App() {
       path:'/cart',
       element:<Cart/>
     },
+    ,{
+      path:'/order',
+      element:<PlaceOrder/>
+    },
     {
       path:'/verify',
       element:<Verify/>
 
-    },{
+    },
+    {
       path:'/myorders',
       element:<MyOrders/>
     }

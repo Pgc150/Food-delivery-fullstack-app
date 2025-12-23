@@ -27,7 +27,7 @@ const placeOrder = async (req,res) => {
                 product_data : {
                     name:item.name
                 },
-                unit_amount:item.price * 100 * 80
+                unit_amount:item.price*100
             },
             quantity:item.quantity
         }))
@@ -83,9 +83,7 @@ const verifyOrder = async (req, res) => {
   }
 };
 
-const updateStatus = async(req,res) => {
 
-}
 
 //user orders for frontend
 const userOrders = async(req,res) => {
@@ -98,8 +96,58 @@ const userOrders = async(req,res) => {
      }
 }
 
-const listOrders = async(req,res) => {
-
+// listing orders for admin panel
+// const listOrders = async (req, res) => {
+//   try {
+    
+//     let userData = await userModel.findById(req.body.userId);
+       
+//     if (userData && userData.role === "admin") {
+//       const orders = await orderModel.find({});
+//       res.json({ success: true, data: orders });
+//     } else {
+//       res.json({ success: false, message: "You are not admin" });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Error" });
+//   }
+// };
+const listOrders = async (req,res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({success:true,data:orders})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message:"Error"})
+  }
 }
 
+// const updateStatus = async (req, res) => {
+//   try {
+//     let userData = await userModel.findById(req.body.userId);
+//     if (userData && userData.role === "admin") {
+//       await orderModel.findByIdAndUpdate(req.body.orderId, {
+//         status: req.body.status,
+//       });
+//       res.json({ success: true, message: "Status Updated Successfully" });
+//     }else{
+//       res.json({ success: false, message: "You are not an admin" });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Error" });
+//   }
+// };
+
+
+const updateStatus = async (req,res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
+    res.json({success:true,message:"Status updated"})
+  } catch (error) {
+    console.log(error);
+    res.json({success:false,message:"Error"})
+  }
+}
 export  {placeOrder,verifyOrder,updateStatus,userOrders,listOrders}

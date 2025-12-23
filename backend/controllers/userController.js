@@ -46,12 +46,13 @@ const registerUser = async (req, res) => {
 
         // Save user to database
         const user = await newUser.save();
+        const role = user.role;
 
         // Generate a token
         const token = createToken(user._id);
 
         // Send response
-        res.status(201).json({ success: true, token ,mesaage:"signup sucessfully"});
+        res.status(201).json({ success: true, token,role ,mesaage:"signup sucessfully"});
     } catch (error) {
         console.error("Error in signup",error.message);
         res.status(500).json({ success: false, message: "Error in signup" });
@@ -73,10 +74,12 @@ const loginUser = async(req,res) => {
         if (!isMatch) {
             return res.json({success:false,message:"Invalid credentials"})
         }
+        const role = user.role;
         const token = createToken(user._id);
         return res.json({
             success: true,
             message: "Login successful",
+            role,
             token,
             user: {
                 id: user._id,
